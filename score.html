@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Result - Anandapath</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">আনন্দপাঠ</a>
+  </nav>
+
+  <!-- Score Container -->
+  <div class="container score-container">
+    <div class="card result-card text-center">
+      <div class="card-body">
+        <h2 class="mb-4">🎉 Quiz Completed!</h2>
+        <p id="scoreText" class="score-text">You scored 0 out of 0</p>
+        <p id="percentageText" class="score-percentage">Percentage: 0%</p>
+        <p id="feedbackMessage" class="feedback"></p>
+        <div class="mt-4">
+          <a href="exam.html" class="btn btn-primary mr-2">Try Again</a>
+          <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const score = parseInt(urlParams.get("score"));
+    const total = parseInt(urlParams.get("total"));
+
+    const scoreText = document.getElementById("scoreText");
+    const percentageText = document.getElementById("percentageText");
+    const feedbackMessage = document.getElementById("feedbackMessage");
+
+    if (!isNaN(score) && !isNaN(total) && total > 0) {
+      const percentage = Math.round((score / total) * 100);
+      scoreText.textContent = `You scored ${score} out of ${total}`;
+      percentageText.textContent = `Percentage: ${percentage}%`;
+
+      // Feedback based on percentage
+      if (percentage === 100) {
+        feedbackMessage.textContent = "Outstanding! 🌟 Perfect score!";
+        feedbackMessage.style.color = "#28a745";
+      } else if (percentage >= 80) {
+        feedbackMessage.textContent = "Excellent work! Keep it up.";
+        feedbackMessage.style.color = "#17a2b8";
+      } else if (percentage >= 60) {
+        feedbackMessage.textContent = "Good effort! Try again for a better score.";
+        feedbackMessage.style.color = "#ffc107";
+      } else {
+        feedbackMessage.textContent = "Needs improvement. Keep practicing!";
+        feedbackMessage.style.color = "#dc3545";
+      }
+    } else {
+      scoreText.textContent = "No score data found.";
+      percentageText.style.display = "none";
+      feedbackMessage.style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

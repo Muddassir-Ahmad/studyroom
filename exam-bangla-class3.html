@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class 3 - Bangla Quiz - Anandapath</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- Link to the external style.css -->
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">আনন্দপাঠ</a> <!-- Updated with your brand name -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="bar-council.html">Bar Council</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="exam.html">Online Exam</a>
+                </li>
+                <li class="nav-item"></li>
+                <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Quiz Container -->
+    <div class="container quiz-container">
+        <div class="card no-hover-effect">
+            <div class="card-body">
+                <h4 class="card-title">Class 3 Bangla Quiz</h4>
+                <div id="timer">Time Left: 20:00</div>
+                <p class="card-text question-header">Question <span id="current-question">1</span> of 20</p>
+                <p class="question" id="question">What is the capital of Bangladesh?</p>
+                <ul class="options" id="options">
+                    <!-- Options will be generated here dynamically -->
+                </ul>
+                <button id="checkAnswer" class="btn btn-primary btn-check-answer" disabled>Check</button>
+                <button id="nextQuestion" class="btn btn-secondary btn-next-question" style="display:none;">Next Question</button>
+                <div id="result" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const questions = [
+            {
+                question: "দেওয়ানী কার্যবিধি আইনের কার্যকর করা হয় কত সালে?",
+                options: ["১৮৫৯ সালে", "১৯০৯ সালে", "১৯০৮ সালে", "১৮৮৭ সালে"],
+                correct: 2
+            },
+            {
+                question: "বাংলাদেশের জাতীয় ফুল কোনটি?",
+                options: ["গোলাপ", "শাপলা", "সূর্যমুখী", "জুঁই"],
+                correct: 1
+            },
+            {
+                question: "বাংলাদেশের জাতীয় ফুল কোনটি?",
+                options: ["গোলাপ", "শাপলা", "সূর্যমুখী", "জুঁই"],
+                correct: 1
+            },
+            {
+                question: "বাংলাদেশের জাতীয় ফুল কোনটি?",
+                options: ["গোলাপ", "শাপলা", "সূর্যমুখী", "জুঁই"],
+                correct: 1
+            },
+            {
+                question: "বাংলাদেশের জাতীয় ফুল কোনটি?",
+                options: ["গোলাপ", "শাপলা", "সূর্যমুখী", "জুঁই"],
+                correct: 1
+            },
+            {
+                question: "বাংলাদেশের জাতীয় ফুল কোনটি?",
+                options: ["গোলাপ", "শাপলা", "সূর্যমুখী", "জুঁই"],
+                correct: 1
+            },
+            {
+                question: "বাংলাদেশের জাতীয় ফুল কোনটি?",
+                options: ["গোলাপ", "শাপলা", "সূর্যমুখী", "জুঁই"],
+                correct: 1
+            },
+            {
+                question: "বাংলাদেশের জাতীয় ফুল কোনটি?",
+                options: ["গোলাপ", "শাপলা", "সূর্যমুখী", "জুঁই"],
+                correct: 1
+            },
+
+            // Add 18 more questions here
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timeLeft = 1200; // 20 minutes in seconds
+        let timer;
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const checkAnswerButton = document.getElementById('checkAnswer');
+        const nextQuestionButton = document.getElementById('nextQuestion');
+        const resultElement = document.getElementById('result');
+        const currentQuestionCounter = document.getElementById('current-question');
+        const timerElement = document.getElementById('timer');
+
+        // Function to load the current question
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+            currentQuestionCounter.textContent = currentQuestionIndex + 1;
+            optionsElement.innerHTML = '';
+
+            currentQuestion.options.forEach((option, index) => {
+                const li = document.createElement('li');
+                const input = document.createElement('input');
+                const label = document.createElement('label');
+                input.type = 'radio';
+                input.name = 'option';
+                input.value = index;
+                input.id = `option-${index}`;
+                label.htmlFor = `option-${index}`;
+                label.textContent = option;
+                li.appendChild(input);
+                li.appendChild(label);
+                optionsElement.appendChild(li);
+            });
+
+            checkAnswerButton.disabled = true; // Ensure the Check button is initially disabled
+            nextQuestionButton.style.display = 'none'; // Hide the Next Question button
+            resultElement.textContent = ''; // Clear the result message
+            checkAnswerButton.style.display = 'inline-block'; // Show the Check button
+
+            // Add event listener for radio input change
+            const radioButtons = document.querySelectorAll('input[name="option"]');
+            radioButtons.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    checkAnswerButton.disabled = false; // Enable the check button when an option is selected
+                });
+            });
+        }
+
+        // Check if answer is correct
+        function checkAnswer() {
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (selectedOption) {
+                const selectedAnswer = parseInt(selectedOption.value);
+                const currentQuestion = questions[currentQuestionIndex];
+                const buttons = optionsElement.querySelectorAll('input');
+                const labels = optionsElement.querySelectorAll('label');
+                
+                buttons.forEach((button, index) => {
+                    if (index === currentQuestion.correct) {
+                        labels[index].classList.add('correct-answer');
+                    }
+                    if (index === selectedAnswer && index !== currentQuestion.correct) {
+                        labels[index].classList.add('incorrect-answer');
+                    }
+                });
+
+                if (selectedAnswer === currentQuestion.correct) {
+                    resultElement.textContent = 'Correct!';
+                    score++;
+                } else {
+                    resultElement.textContent = `Incorrect! Correct answer: ${currentQuestion.options[currentQuestion.correct]}`;
+                }
+
+                checkAnswerButton.style.display = 'none'; // Hide the Check button
+                nextQuestionButton.style.display = 'inline-block'; // Show the Next Question button
+            }
+        }
+
+        // Go to the next question
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        // Update the timer
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+            timeLeft--;
+            if (timeLeft < 0) {
+                clearInterval(timer);
+                finishQuiz();
+            }
+        }
+
+        // Finish the quiz
+        function finishQuiz() {
+            questionElement.textContent = `You scored ${score} out of ${questions.length}`;
+            optionsElement.innerHTML = '';
+            checkAnswerButton.style.display = 'none';
+            nextQuestionButton.style.display = 'none';
+            resultElement.textContent = '';
+        }
+
+        // Start the quiz
+        function startQuiz() {
+            loadQuestion();
+            timer = setInterval(updateTimer, 1000);
+        }
+
+        startQuiz();
+        checkAnswerButton.addEventListener('click', checkAnswer);
+        nextQuestionButton.addEventListener('click', nextQuestion);
+    </script>
+
+</body>
+</html>

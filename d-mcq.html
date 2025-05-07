@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Class 3 - Bangla Quiz - Anandapath</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">আনন্দপাঠ</a>
+  </nav>
+
+  <!-- Quiz Container -->
+  <div class="container quiz-container">
+    
+    <!-- Start Screen -->
+    <div id="start-screen" class="text-center my-5">
+      <button id="startBtn" class="btn btn-success btn-lg">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Interface -->
+    <div id="quizBox" style="display: none;">
+      <div class="card no-hover-effect">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4">Class 3 Bangla Quiz</h4>
+
+          <!-- Timer -->
+          <div id="timer-container">
+            <div id="timer">Time Left: 20:00</div>
+            <div id="timer-bar"></div>
+          </div>
+
+          <!-- Question Area -->
+          <p class="question-header">Question <span id="current-question">1</span> of <span id="total-questions">0</span></p>
+          <p class="question" id="question">Loading question...</p>
+          <ul class="options" id="options"></ul>
+
+          <!-- Control Buttons -->
+          <button id="checkAnswer" class="btn btn-primary btn-check-answer" disabled>Submit</button>
+          <button id="nextQuestion" class="btn btn-secondary btn-next-question" style="display:none;">Next Question</button>
+          <div id="result" class="result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+   const questions = [
+  {
+    question: "সরকার পক্ষ থেকে নোটিশ প্রদান না করে দেওয়ানি মামলা করলে সরকারের বিরুদ্ধে লিখিত বর্ণনা দাখিলের জন্য আদালতের অনুমুতি কত দিন সময় দিবে?",
+    options: ["৩০ দিন", "১০ দিন", "৯০ দিন", "১৮০ দিন"],
+    correct: 2
+  },
+  {
+    question: "অভিযোগকারী যথাযথ জবাব না দেওয়ার কারণে নোটিশকারীর না হলে আদালত কি পদক্ষেপ নিতে পারে?",
+    options: ["আংশিক খারিজ করে দিতে পারে", "রায় ঘোষণা করতে পারে", "বিচারিক কারণ পেশ করতে পারে", "আদেশ দিতে পারে"],
+    correct: 1
+  },
+  {
+    question: "কোন-সার্ভিস নীতি প্রণয়ন হবেনা যদি মোহাম্মদ বিচারালয় থাকে?",
+    options: ["বিদেশী কোন আদালত", "বাংলাদেশের কোন আদালত", "বাংলাদেশের হাইকোর্ট", "কোনটিই নয়"],
+    correct: 3
+  },
+  {
+    question: "আদালত সূর্যাস্তের পরবর্তী ব্যাখ্যা কখন পর্যন্ত করতে পারেন?",
+    options: ["ভোরবেলা", "দুপুরে", "সূর্যাস্তের পর এবং সূর্যোদয়ের পূর্বে", "রাত্রে"],
+    correct: 2
+  },
+  {
+    question: "কোন অপরাধের ক্ষেত্রে হাইকোর্টের আদালতের অনুমতি ছাড়া বিচার বলা হবে না?",
+    options: ["আদি অপরাধের বিরুদ্ধে আদালতের স্থানে সাধারণ ভাবে বিচার না করলে", "৬০ দিনের মধ্যে বিচার না করলে", "বিচারের ব্যবস্থা থাকলেও ২০০ মাসের মধ্যে বিচার না করলে", "উপরের সবগুলো"],
+    correct: 3
+  },
+  {
+    question: "একটি মামলার মূলগ্রন্থ সংশোধনের সর্বোচ্চ সময়কাল কতদিন?",
+    options: ["১৪ দিন", "১৫ দিন", "২১ দিন", "৩০ দিন"],
+    correct: 2
+  },
+  {
+    question: "ট্রিপ কার্যের করার এখতিয়ার কোন আদালতের রয়েছে?",
+    options: ["যে আদালত ট্রিপ দিয়েছে", "যে আদালতকে ট্রিপ কার্যকর করার জন্য পাঠানো হয়েছে", "যে রায় দেওয়া হয়েছে আদালত", "ক ও খ"],
+    correct: 3
+  },
+  {
+    question: "একটি মামলা যদি ভুল পক্ষকে তার সীমাহীন অর্থে ও টিকা ছাড়াই মৃত্যুর অনুমোদন করে, আদালতের উচ্চ পর্যায়ে সংক্ষিপ্ত কত টাকা খরচ দিতে হয় আপিল করতে?",
+    options: ["৫০০ টাকা", "৭০০ টাকা", "১০০০ টাকা", "২০০০ টাকা"],
+    correct: 2
+  },
+  {
+    question: "দেওয়ানি কার্যবিধি আদেশ-২৩ নিয়ম-৩ এ উল্লেখ রয়েছে:",
+    options: ["সংশোধনকারীর উপর আদালতের স্বাক্ষর থাকতে হবে", "সংশোধনকারীর দ্বারা স্বাক্ষর থাকতে হবে", "উভয়ের স্বাক্ষর থাকতে হবে", "সংশোধনকারীর কারো স্বাক্ষর থাকতে হবে না"],
+    correct: 2
+  },
+  {
+    question: "আদালত প্রয়োজন হলে কিভাবে সাক্ষ্য গ্রহণ করতে পারে?",
+    options: ["সাক্ষ্যদাতা অন্য আদালতে উপস্থিত থেকে", "অপরপক্ষের রায় ঘোষণা শেষে মাত্রই", "আংশিক সাক্ষ্য গ্রহণ করা হয়", "সাক্ষ্যদাতা যদি উপস্থিত না থাকেন"],
+    correct: 0
+  },
+  {
+    question: "দুটি মোহাম্মদ কী ভিত্তিতে খারিজ হতে পারে না বলছেন?",
+    options: ["রিজিউড", "রিলিশন", "বিবিধ আপিল", "আপীল"],
+    correct: 3
+  }
+];
+
+    let totalTime = 1200; // 20 minutes
+    let timeLeft = totalTime;
+    let timer;
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    const startBtn = document.getElementById('startBtn');
+    const quizBox = document.getElementById('quizBox');
+    const startScreen = document.getElementById('start-screen');
+
+    const questionElement = document.getElementById('question');
+    const optionsElement = document.getElementById('options');
+    const checkAnswerButton = document.getElementById('checkAnswer');
+    const nextQuestionButton = document.getElementById('nextQuestion');
+    const resultElement = document.getElementById('result');
+    const currentQuestionCounter = document.getElementById('current-question');
+    const totalQuestionsElement = document.getElementById('total-questions');
+    const timerElement = document.getElementById('timer');
+    const timerBar = document.getElementById('timer-bar');
+
+    // Start Quiz
+    startBtn.addEventListener('click', () => {
+      startScreen.style.display = 'none';
+      quizBox.style.display = 'block';
+      startQuiz();
+    });
+
+    function loadQuestion() {
+      const current = questions[currentQuestionIndex];
+      questionElement.textContent = current.question;
+      currentQuestionCounter.textContent = currentQuestionIndex + 1;
+      totalQuestionsElement.textContent = questions.length;
+      optionsElement.innerHTML = '';
+      resultElement.textContent = '';
+      checkAnswerButton.disabled = true;
+      checkAnswerButton.style.display = 'inline-block';
+      nextQuestionButton.style.display = 'none';
+
+      current.options.forEach((opt, index) => {
+        const li = document.createElement('li');
+        const input = document.createElement('input');
+        const label = document.createElement('label');
+        input.type = 'radio';
+        input.name = 'option';
+        input.value = index;
+        input.id = `option-${index}`;
+        label.htmlFor = `option-${index}`;
+        label.textContent = opt;
+        li.appendChild(input);
+        li.appendChild(label);
+        optionsElement.appendChild(li);
+      });
+
+      document.querySelectorAll('input[name="option"]').forEach(radio => {
+        radio.addEventListener('change', () => checkAnswerButton.disabled = false);
+      });
+    }
+
+    function checkAnswer() {
+      const selectedOption = document.querySelector('input[name="option"]:checked');
+      if (!selectedOption) return;
+
+      const selectedIndex = parseInt(selectedOption.value);
+      const correctIndex = questions[currentQuestionIndex].correct;
+      const liElements = optionsElement.querySelectorAll('li');
+
+      liElements.forEach((li, index) => {
+        if (index === correctIndex) li.classList.add('correct-answer');
+        if (index === selectedIndex && selectedIndex !== correctIndex) li.classList.add('incorrect-answer');
+      });
+
+      if (selectedIndex === correctIndex) {
+        resultElement.textContent = 'Correct!';
+        score++;
+      } else {
+        resultElement.textContent = `Incorrect! Correct answer: ${questions[currentQuestionIndex].options[correctIndex]}`;
+      }
+
+      checkAnswerButton.style.display = 'none';
+      nextQuestionButton.style.display = 'inline-block';
+    }
+
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        loadQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function updateTimer() {
+      const min = Math.floor(timeLeft / 60);
+      const sec = timeLeft % 60;
+      timerElement.textContent = `Time Left: ${min}:${sec < 10 ? '0' + sec : sec}`;
+      timerBar.style.width = (timeLeft / totalTime) * 100 + '%';
+
+      timeLeft--;
+      if (timeLeft < 0) {
+        clearInterval(timer);
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      clearInterval(timer);
+      const total = questions.length;
+      window.location.href = `score.html?score=${score}&total=${total}`;
+    }
+
+    function startQuiz() {
+      loadQuestion();
+      timer = setInterval(updateTimer, 1000);
+    }
+
+    checkAnswerButton.addEventListener('click', checkAnswer);
+    nextQuestionButton.addEventListener('click', nextQuestion);
+  </script>
+
+</body>
+</html>

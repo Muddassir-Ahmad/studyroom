@@ -1,0 +1,351 @@
+/* General Styles */
+body {
+    font-family: 'Merriweather', serif;
+    font-size: 1.1rem; /* Slightly larger, comfortable reading size */
+}
+
+/* Header Styling */
+.header-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #343a40;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-bottom: 3px solid #343a40; /* Underline */
+    display: inline-block;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Navbar */
+.navbar {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: red !important;
+    font-size: 2rem !important;
+    padding: 0;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem !important;
+    padding: 0.5rem 1rem !important;
+}
+
+/* Cards Styling */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* General card hover effect */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Zoom effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Shadow effect */
+}
+
+/* Quiz card: Disable hover effect for the quiz page */
+.no-hover-effect:hover {
+    transform: none; /* Disable the zooming effect */
+    box-shadow: none; /* Disable the shadow effect */
+}
+
+.card-body {
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+/* Footer Styling */
+footer {
+    padding: 2rem 0;
+}
+
+footer h5 {
+    font-weight: bold;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+.bg-dark {
+    background-color: #343a40 !important;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.text-dark {
+    color: #343a40 !important;
+}
+
+/* General icon color */
+.contact-info i {
+    color: #000 !important; /* Default black color for all icons */
+}
+
+/* Facebook and WhatsApp specific colors */
+.contact-info .fa-facebook {
+    color: #1877f2 !important; /* Facebook blue */
+}
+
+.contact-info .fa-whatsapp {
+    color: #25d366 !important; /* WhatsApp green */
+}
+
+/* Hover effect for all icons */
+.contact-info a:hover i {
+    color: #000000; /* Hover effect for all icons (except specific ones) */
+}
+
+/* Social Media Icons */
+.social-icons a {
+    margin-right: 15px;
+}
+
+/* Styles for quiz interface */
+.quiz-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-header {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.options {
+    list-style-type: none;
+    padding: 0;
+}
+
+.options li {
+    margin-bottom: 10px;
+}
+
+.options li label {
+    font-size: 1.1rem;
+    margin-left: 10px;
+}
+
+.correct-answer {
+    background-color: #28a745;
+    color: white;
+}
+
+.incorrect-answer {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-check-answer, .btn-next-question {
+    margin-top: 15px;
+    float: right;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Timer Styling */
+#timer {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #dc3545;
+}
+
+.nav-link.active {
+    color: red !important; /* Red text color for the active page */
+}
+
+
+
+/* score css */
+.result-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 40px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.result-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.score-text, .score-percentage, .time-taken {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+.result-card .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.result-card .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+/* score css end */
+
+
+/* Bar Council Page Styling (Updated for Consistency) */
+
+/* Custom Box */
+.custom-box {
+    background-color: #f8f9fa; /* Match overall light background */
+    border: 1px solid #c9d4f1;
+    border-radius: 10px; /* Rounded corners like cards */
+    padding: 20px; /* Inner padding for a clean look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow like other sections */
+    margin-bottom: 2rem;
+}
+
+/* Bar Council Page Styling (Smooth and Consistent) */
+
+/* Custom Box */
+.custom-box {
+    background-color: #f8f9fa; /* Light background for consistency */
+    border: 1px solid #c9d4f1;
+    border-radius: 10px; /* Rounded corners like cards */
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin-bottom: 2rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth hover transitions */
+}
+
+/* Optional: Slight lift on hover */
+.custom-box:hover {
+  
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom Button */
+.custom-btn {
+    background-color: #ffffff; /* Neutral clean base */
+    border: 1px solid #343a40;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: #343a40;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Icon Inside Button */
+.custom-btn i {
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect for Button */
+.custom-btn:hover {
+    background-color: #343a40; /* Darken background */
+    color: #ffffff; /* White text */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2); /* Softer, deeper hover shadow */
+    transform: translateY(-3px) scale(1.03); /* Light lift and smooth zoom */
+}
+
+
+/* bar council  */
+
+
+
+/* Study Options Page Styling - Consistent Smooth Design */
+
+/* Main Box */
+.study-box {
+    background-color: #f8f9fa;
+    border: 1px solid #c9d4f1;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.study-box:hover {
+   
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Study Buttons */
+.study-btn {
+    background-color: #ffffff;
+    border: 1px solid #343a40;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 20px;
+    border-radius: 8px;
+    color: #343a40;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.study-btn i {
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for buttons */
+.study-btn:hover {
+    background-color: #343a40;
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px) scale(1.03);
+}
+
+/* Fix focus/active/visited blue flash */
+.study-btn:focus,
+.study-btn:active,
+.study-btn:visited {
+    background-color: #343a40;
+    color: #ffffff;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+    outline: none;
+    border-color: #343a40;
+}
+/* Study Buttons */

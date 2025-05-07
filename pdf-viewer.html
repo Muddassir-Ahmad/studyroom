@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anandapath - Flipbook Viewer</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- Linking the external stylesheet for consistency -->
+</head>
+<body>
+
+   <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">আনন্দপাঠ</a> <!-- Updated with your brand name -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="bar-council.html">Bar Council</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="income-tax.html">Icome Tax</a>
+             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="exam.html">Online Exam</a>
+            </li>
+            <li class="nav-item"></li>
+            <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <!-- Flipbook Viewer -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                
+                <!-- Iframe for displaying the flipbook -->
+                <div id="iframeContainer" class="text-center">
+                    <iframe id="flipbookIframe" allowfullscreen="allowfullscreen" scrolling="no" style="border: 0px; width: 100%; height: 600px;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center text-lg-start mt-5">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About Anandapath</h5>
+                    <p>Your guide to quality educational resources and reading materials for students.</p>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <h5>Contact Us</h5>
+                    <p>Email: info@anandapath.com</p>
+                    <p>Phone: +123-456-7890</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-light text-dark py-2">
+            <p class="mb-0">&copy; 2024 Anandapath | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script>
+        // Get the file parameter from the URL
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get('file');
+
+        const iframe = document.getElementById('flipbookIframe');
+
+        if (!file) {
+            alert('No file specified. Please provide a file in the URL like: ?file=https://heyzine.com/flip-book/1106489b79.html');
+        } else {
+            // Set the iframe source to the provided flipbook URL
+            iframe.src = file;
+        }
+    </script>
+
+</body>
+</html>
